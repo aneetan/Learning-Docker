@@ -1,0 +1,27 @@
+ version: "3.8"
+ name: "super_container"
+ 
+
+ services:
+  api:
+    image: "demo"
+    container_name: "node_services"
+    build:
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+
+    #explaining what node depends on
+    depends_on:
+      - data
+
+  data:
+    container_name: "data_services"
+    #database ko lagi yo image import garxa
+    image: postgres
+    environment:
+      -POSTGRES_DB: mydb
+      -POSTGRES_USER: user
+      -POSTGRES_PASSWORD: password
+
+  
