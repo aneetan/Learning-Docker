@@ -1,0 +1,8 @@
+Networking allows docker to isolate a container.
+
+We can create a custom network in docker using following command:
+# docker network create network-name
+
+Assign the network to a container while spinning up the container
+# docker run -d -p 4000:4000 --name mycontainer --network network-name myimage:version
+
