@@ -1,24 +1,20 @@
-package com.example.dockerize;
+package com.example.dockerize.component;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
+@Component
 @RestController
-
-public class DockerizeApplication {
+public class CheckDB {
 
     @Autowired
     private JdbcTemplate jdbc;
 
-    @GetMapping("/msg")
-    public String getMessage(){
-        return "Hello from java!! ";
-    }
 
     @GetMapping("/checkdb")
     public String checkDatabaseConnection() {
@@ -29,10 +25,4 @@ public class DockerizeApplication {
             return "Database connection failed: " + e.getMessage();
         }
     }
-
-
-    public static void main(String[] args) {
-        SpringApplication.run(DockerizeApplication.class, args);
-    }
-
 }
